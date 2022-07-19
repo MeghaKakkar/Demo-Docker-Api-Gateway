@@ -20,23 +20,25 @@ services:
     volumes:
       - certificatedb-data:/var/lib/mysql
   my-eureka-server:
-    image: my-eureka-server:1.0
+    image: meghakakkar/test_1:my-eureka-server
     ports: 
       - 8761:8761
   my-eureka-client1:
-    image: my-eureka-client1:1.0
+    image: meghakakkar/test_1:my-eureka-client1
     ports:
       - 8081:8081
     depends_on:
       - mysql-standalone1
+      - my-eureka-server
   my-eureka-client2:
-    image: my-eureka-client2:1.0
+    image: meghakakkar/test_1:my-eureka-client2
     ports:
       - 8082:8082
     depends_on:
       - mysql-standalone2
+      - my-eureka-server
   my-api-gateway:
-    image: my-api-gateway:1.0
+    image: my-api-gateway
     ports:
       - 8083:8083
     build:
